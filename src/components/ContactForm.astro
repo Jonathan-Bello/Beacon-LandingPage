@@ -1,0 +1,55 @@
+<form
+  action="https://formspree.io/f/{your-form-id}"
+  method="POST"
+  class="mt-6 space-y-4"
+>
+  <h4 class="text-lg font-semibold text-blue-900">Solicite su presupuesto</h4>
+  <textarea
+    name="mensaje"
+    placeholder="Escriba su mensaje"
+    required
+    class="w-full border border-gray-300 rounded-lg p-2 text-sm"></textarea>
+  <div class="grid md:grid-cols-2 gap-4">
+    <input
+      name="nombre"
+      type="text"
+      required
+      placeholder="Nombre*"
+      class="border border-gray-300 rounded-lg p-2 text-sm"
+    />
+    <input
+      name="empresa"
+      type="text"
+      placeholder="Empresa"
+      class="border border-gray-300 rounded-lg p-2 text-sm"
+    />
+    <input
+      name="telefono"
+      type="tel"
+      required
+      placeholder="Teléfono*"
+      class="border border-gray-300 rounded-lg p-2 text-sm"
+    />
+    <input
+      name="email"
+      type="email"
+      required
+      placeholder="Correo electrónico*"
+      class="border border-gray-300 rounded-lg p-2 text-sm"
+    />
+  </div>
+  <div class="flex justify-end gap-4">
+    <button
+      type="button"
+      class="text-sm px-4 py-2 rounded-md border border-gray-300"
+    >
+      CANCELAR
+    </button>
+    <button
+      type="submit"
+      class="text-sm px-4 py-2 rounded-md bg-blue-900 text-white hover:bg-blue-800"
+    >
+      ENVIAR
+    </button>
+  </div>
+</form>
