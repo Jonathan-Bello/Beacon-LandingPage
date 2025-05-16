@@ -1,21 +1,19 @@
 ---
-import { getImage } from "astro:assets";
 import imgSala from "@assets/img/office.png"; // reemplaza con tu imagen real
-
-const sala = await getImage({ src: imgSala });
+import { Image } from "astro:assets";
 ---
 
 <section class="relative w-full overflow-hidden">
-  <div class="flex flex-col md:flex-row min-h-[80vh]">
+  <div class="flex flex-col md:flex-row md:min-h-[80vh]">
     <!-- Imagen fuera del contenedor -->
-    <div class="relative flex-1">
-      <img src={sala.src} alt="Sala Beacon" class="h-full object-cover" />
+    <div class="flex-1">
+      <Image src={imgSala} alt="Sala Beacon" class="h-full object-cover" />
     </div>
 
     <!-- Contenido -->
     <div
-      class="relative bg-primary-2 text-white w-full flex-1
-      flex items-center md:my-8 lg:my-16 px-6 py-16 md:p-20 z-10 md:min-h-[100vh]"
+      class="relative bg-primary-2 text-white w-full flex-1 h-full
+      flex items-center md:my-8 lg:my-16 px-6 py-16 md:p-20 md:min-h-[100vh]"
     >
       <div
         class="max-w-xl mx-auto space-y-6 text-base md:text-xl leading-relaxed"
