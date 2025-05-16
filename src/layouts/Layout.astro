@@ -2,6 +2,7 @@
 import { ClientRouter } from "astro:transitions";
 import Header from "./Header.astro";
 import "./src/styles/global.css";
+import Footer from "./Footer.astro";
 
 interface Props {
   title: string;
@@ -34,6 +35,7 @@ const { title, description } = Astro.props;
     <main class="mt-16 lg:mt-24 flex-1 bg-white">
       <slot />
     </main>
+    <Footer />
   </body>
 </html>
 

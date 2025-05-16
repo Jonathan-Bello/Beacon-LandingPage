@@ -3,10 +3,12 @@ const { onContactHref = "#contacto", onScheduleHref = "#presentacion" } =
   Astro.props;
 ---
 
-<section class="py-12 px-4 bg-white text-center relative">
+<section class="py-12 pb-24 px-4 bg-white text-center relative">
   <div class="container mx-auto">
     <p class="text-primary-1 font-light text-lg lg:text-xl xl:text-2xl mb-6">
-      ¡Descubre cómo <strong class="font-bold">nuestra tecnología puede ayudarte!</strong>
+      ¡Descubre cómo <strong class="font-bold"
+        >nuestra tecnología puede ayudarte!</strong
+      >
     </p>
 
     <div class="flex justify-center gap-4 flex-wrap">
@@ -18,7 +20,7 @@ const { onContactHref = "#contacto", onScheduleHref = "#presentacion" } =
       </a>
 
       <a
-        href={onScheduleHref}
+        href={"https://meetings.hubspot.com/jtorres44"}
         class="bg-primary-3 text-primary-1 text-xs md:text-sm lg:text-base font-normal px-5 py-2 rounded-full hover:bg-primary-2/20 transition-colors"
       >
         AGENDAR PRESENTACIÓN
