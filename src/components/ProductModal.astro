@@ -2,6 +2,7 @@
 // src/components/ProductModal.astro
 import type { ImageMetadata } from "astro";
 import { Image } from "astro:assets";
+import ContactForm from "./ContactForm.astro";
 
 interface Product {
   id: string;
@@ -35,6 +36,7 @@ const { product } = Astro.props;
     >
       &times;
     </button>
+
     <div class="flex flex-col md:flex-row gap-16">
       <Image
         src={product.image}
@@ -63,25 +65,59 @@ const { product } = Astro.props;
           >
             FICHA TÉCNICA
           </a>
+          <button
+            id={`quote-button-${product.id}`}
+            class="quote-button
+            bg-primary-1 text-white px-4 py-2 rounded-full text-sm hover:bg-blue-800 hover:cursor-pointer lg:absolute bottom-8 right-8"
+          >
+            COTIZAR
+          </button>
         </div>
-
-        <button
-          class="bg-primary-1 text-white px-4 py-2 rounded-full text-sm hover:bg-blue-800 hover:cursor-pointer absolute bottom-8 right-8"
-        >
-          COTIZAR
-        </button>
       </div>
+    </div>
+
+    <div id={`form-${product.id}`} class="hidden">
+      <ContactForm />
     </div>
   </div>
 </div>
 
 <script>
   document.addEventListener("astro:page-load", () => {
+    const closeModal = (modal: Element) => {
+      modal.classList.add("hidden");
+
+      const form = modal.querySelector("[id^='form-']");
+      const quoteButton = modal.querySelector(".quote-button");
+
+      if (form) form.classList.add("hidden");
+      if (quoteButton) quoteButton.classList.remove("hidden");
+    };
+
+    // Cerrar al dar click en la 'X'
     document.querySelectorAll(".close-modal").forEach((btn) => {
       btn.addEventListener("click", () => {
         const modal = btn.closest("[id^='modal-']");
-        if (modal) {
-          modal.classList.add("hidden");
+        if (modal) closeModal(modal);
+      });
+    });
+
+    // Mostrar formulario y ocultar botón
+    document.querySelectorAll(".quote-button").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const modal = btn.closest("[id^='modal-']");
+        const form = modal?.querySelector("[id^='form-']");
+
+        if (form) form.classList.remove("hidden");
+        btn.classList.add("hidden");
+      });
+    });
+
+    // Cerrar al hacer clic fuera del modal (fondo oscuro)
+    document.querySelectorAll("[id^='modal-']").forEach((modal) => {
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) {
+          closeModal(modal);
         }
       });
     });
