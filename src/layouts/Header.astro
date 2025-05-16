@@ -2,7 +2,7 @@
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Image } from "astro:assets";
 
-import svgLogoGynobs from "@assets/svg/logo.svg";
+import svgLogo from "@assets/svg/logo.svg";
 
 interface Props {
   type?: "default" | "transparent";
@@ -31,7 +31,12 @@ const { type = "default" } = Astro.props;
       class="w-full lg:w-auto
     flex items-center justify-center lg:justify-start"
     >
-      <Image class=`h-6 w-auto` src={svgLogoGynobs} alt="logo Gynobs" />
+      <a
+        href="/"
+        class="flex items-center gap-2 lg:gap-4 text-primary-1 font-bold text-xl lg:text-2xl xl:text-3xl"
+      >
+        <Image class=`h-6 w-auto` src={svgLogo} alt="logo" />
+      </a>
     </div>
 
     <nav
