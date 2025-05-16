@@ -76,7 +76,10 @@ const { product } = Astro.props;
       </div>
     </div>
 
-    <div id={`form-${product.id}`} class="hidden">
+    <div
+      id={`form-${product.id}`}
+      class="form-container hidden opacity-0 translate-y-4 transition-all duration-300"
+    >
       <ContactForm />
     </div>
   </div>
@@ -85,16 +88,23 @@ const { product } = Astro.props;
 <script>
   document.addEventListener("astro:page-load", () => {
     const closeModal = (modal: Element) => {
-      modal.classList.add("hidden");
-
-      const form = modal.querySelector("[id^='form-']");
+      const form = modal.querySelector(".form-container");
       const quoteButton = modal.querySelector(".quote-button");
 
-      if (form) form.classList.add("hidden");
+      if (form) {
+        form.classList.add("opacity-0", "translate-y-4");
+        form.classList.remove("opacity-100", "translate-y-0");
+        setTimeout(() => {
+          form.classList.add("hidden");
+        }, 300);
+      }
+
       if (quoteButton) quoteButton.classList.remove("hidden");
+
+      modal.classList.add("hidden");
     };
 
-    // Cerrar al dar click en la 'X'
+    // Botón cerrar
     document.querySelectorAll(".close-modal").forEach((btn) => {
       btn.addEventListener("click", () => {
         const modal = btn.closest("[id^='modal-']");
@@ -102,18 +112,29 @@ const { product } = Astro.props;
       });
     });
 
-    // Mostrar formulario y ocultar botón
+    // Mostrar formulario + scroll hacia él
     document.querySelectorAll(".quote-button").forEach((btn) => {
       btn.addEventListener("click", () => {
         const modal = btn.closest("[id^='modal-']");
-        const form = modal?.querySelector("[id^='form-']");
+        const form = modal?.querySelector(".form-container");
 
-        if (form) form.classList.remove("hidden");
+        if (form) {
+          form.classList.remove("hidden");
+
+          requestAnimationFrame(() => {
+            form.classList.remove("opacity-0", "translate-y-4");
+            form.classList.add("opacity-100", "translate-y-0");
+
+            // Scroll suave hacia el formulario
+            form.scrollIntoView({ behavior: "smooth", block: "start" });
+          });
+        }
+
         btn.classList.add("hidden");
       });
     });
 
-    // Cerrar al hacer clic fuera del modal (fondo oscuro)
+    // Click fuera del modal
     document.querySelectorAll("[id^='modal-']").forEach((modal) => {
       modal.addEventListener("click", (e) => {
         if (e.target === modal) {
