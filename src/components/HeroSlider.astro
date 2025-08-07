@@ -1,9 +1,9 @@
 ---
 import { getImage } from "astro:assets";
 
-import bgSlide1 from "@assets/img/bg1.png";
-import bgSlide2 from "@assets/img/bg2.png";
-import bgSlide3 from "@assets/img/bg3.png";
+import bgSlide1 from "@assets/img/bg1.webp";
+import bgSlide2 from "@assets/img/bg2.webp";
+import bgSlide3 from "@assets/img/bg3.webp";
 
 const bg1 = await getImage({ src: bgSlide1 });
 const bg2 = await getImage({ src: bgSlide2 });
@@ -56,7 +56,10 @@ const slides = [
                   class="font-title text-3xl md:text-5xl leading-tight mb-8"
                   set:html={slide.title}
                 />
-                <p class="font-text text-base md:text-lg mb-6">{slide.text}</p>
+                <p
+                  class="font-text text-base md:text-lg lg:text-xl mb-6"
+                  set:html={slide.text}
+                />
                 <a
                   href={slide.cta.href}
                   class="inline-block bg-tertiary-1 hover:bg-sky-500 text-white font-semibold px-6 py-3 rounded-full transition-colors duration-300 text-sm md:text-base"

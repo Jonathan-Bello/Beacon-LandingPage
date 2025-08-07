@@ -1,5 +1,10 @@
 ---
-const { variant = "section" } = Astro.props;
+interface Props {
+  variant?: "section" | "modal";
+  productName?: string;
+}
+
+const { variant = "section", productName } = Astro.props;
 
 const wrapperClass =
   variant === "modal" ? "rounded-lg px-4 py-6 md:px-6 md:py-8" : "bg-white";
@@ -9,7 +14,7 @@ const inputClass =
 ---
 
 <form
-  action="https://formspree.io/f/xpzgrnqg"
+  action="https://formspree.io/f/movlpwbq"
   method="POST"
   class={`${wrapperClass} space-y-8 text-primary-1 text-sm`}
 >
@@ -32,6 +37,10 @@ const inputClass =
           class={`${inputClass} resize-none`}
           placeholder="Me interesa recibir una cotización para el modelo. Quedo atento(a) a su respuesta. Saludos cordiales"
         />
+
+        {productName && (
+          <input type="hidden" name="producto" value={`${productName}`} />
+        )}
       </div>
     )
   }
