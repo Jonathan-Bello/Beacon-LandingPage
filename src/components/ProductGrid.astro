@@ -2,10 +2,33 @@
 // src/components/ProductGrid.astro
 import ProductCard from "./ProductCard.astro";
 import ProductModal from "./ProductModal.astro";
+import imgC22SPlus from "@assets/img/c22S.png";
 import imgC310S from "@assets/img/c310s.png";
 import imgC510S from "@assets/img/c510s.png";
 
 const products = [
+  {
+    id: "c22Splus",
+    name: "C22S+",
+    description:
+      "Monitor de grado médico de 21.3” 2MP para diagnóstico clínico. Visualización confiable con adaptación a luz ambiental y estándar DICOM.",
+    largeDescription: `Monitor de 2 megapíxeles con tecnología de estabilización de retroiluminación, calidad constante y adaptación automática a luz ambiental.
+    <br /><br />
+    Ideal para diagnóstico clínico y visualización de imágenes médicas en sistemas PACS.`,
+    image: imgC22SPlus,
+    datasheetUrl:
+      "https://drive.google.com/file/d/1VMjM3i1Iadw2egJsMpeJ9SXrAAx6OdjG/view",
+    features: [
+      "Excelente compatibilidad",
+      "Alta precisión y cumplimiento DICOM",
+      "Tecnología de calibración de uniformidad",
+      "Resolución y nivel de brillo excepcionales",
+      "Tecnología de luz azul reducida",
+      "Gamma híbrido / independiente",
+      "Sistema adaptativo de luz ambiente",
+      "Mínimo consumo energético",
+    ],
+  },
   {
     id: "c310s",
     name: "C310S",
@@ -63,7 +86,7 @@ const products = [
     Monitores de grado médico
   </h3>
 
-  <div class="container mx-auto px-6 grid lg:grid-cols-2 gap-8">
+  <div class="container mx-auto px-6 flex flex-wrap justify-center gap-8">
     {products.map((product) => <ProductCard product={product} />)}
   </div>
 
